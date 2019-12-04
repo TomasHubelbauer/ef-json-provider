@@ -55,3 +55,9 @@ The order in which things are called:
 
 Maybe it will be better to try and get EF Core to run, then instrument the in memory provider
 and try to clone that.
+
+## To-do
+
+### Run the Pomelo provider side by side and trace both
+
+This will help figure out how to hook this one up.
