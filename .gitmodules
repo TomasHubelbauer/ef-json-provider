@@ -1,0 +1,3 @@
+[submodule "Pomelo.EntityFrameworkCore.MySql"]
+	path = Pomelo.EntityFrameworkCore.MySql
+	url = https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql
