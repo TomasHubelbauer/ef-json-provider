@@ -6,19 +6,13 @@ provider, so I'm going to use the Pomelo provider for MySQL to trace what it
 does and replicate that in my own provider, which will not talk to a database,
 but will read from and write to JSON files instead.
 
+## Development
+
+- Run MySQL
+- Open Pomelo in VS - make changes and rebuild each time
+- `cd src` and `dotnet run` - depends on the built DLL from Pomelo
+
 ## To-Do
-
-### Build a project which uses the Pomelo provider from the submodule
-
-`Pomelo.EntityFrameworkCore.MySql\artifacts\bin\EFCore.MySql\Debug\netstandard2.0\Pomelo.EntityFrameworkCore.MySql.dll`
-
-Make changes to the Pomelo provider and restart the demo app to pick up the new
-DLL.
-
-### Run MySQL in WSB or WSL and connect to it
-
-Isolated so that I can easily delete it later on without it dirtying up my own
-computer.
 
 ### Trace out all the calls to the Pomelo provider EF Core makes
 

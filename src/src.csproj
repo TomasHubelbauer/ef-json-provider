@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Pomelo.EntityFrameworkCore.MySql">
+      <HintPath>..\Pomelo.EntityFrameworkCore.MySql\artifacts\bin\EFCore.MySql\Debug\netstandard2.0\Pomelo.EntityFrameworkCore.MySql.dll</HintPath>
+    </Reference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.0" />
+    <PackageReference Include="MySqlConnector" Version="0.61.0.0" />
+    <PackageReference Include="Pomelo.JsonObject" Version="2.2.1.0" />
+  </ItemGroup>
+</Project>
