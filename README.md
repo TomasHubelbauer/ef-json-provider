@@ -90,10 +90,14 @@ exception is being thrown.
 
 ## To-Do
 
-### Trace out all the calls to the Pomelo provider EF Core makes
-
-Do this for the initialization routine, the initial migration, classic CRUD
-operations etc. Get the infrastructure in place and make it easy to map new
-scenarios.
+### Trace out more of the calls to the Pomelo provider EF Core makes
 
 ### Replicate the Pomelo provider in my own codebase and use JSON files instead
+
+### Figure out how to build and link EF Core from the submodule
+
+### Instrument the source-built EF Core dependency as well as Pomelo
+
+See the other side of the coin when it comes to how Pomelo and my provider are
+called, maybe trace the SQL Server and in memory providers as well to capture
+the differences between relational and non-relational providers.
