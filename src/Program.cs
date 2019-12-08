@@ -11,19 +11,46 @@ namespace src
 {
   class Program
   {
-    static async Task Main(string[] args)
+    static async Task Main()
     {
-      Console.WriteLine("Hello World!");
-      using (var appDbContext = new AppDbContext())
+      if (false)
       {
-        await appDbContext.Database.EnsureDeletedAsync();
-        await appDbContext.Database.EnsureCreatedAsync();
-        await appDbContext.Items.AddAsync(new Item { Name = "Test" });
-        await appDbContext.SaveChangesAsync();
-        var items = appDbContext.Items.ToArray();
-        foreach (var item in items)
+        using (var appDbContext = new AppDbContext(true))
         {
-          Console.WriteLine(item.Id + ": " + item.Name);
+          Console.WriteLine("EnsureDeletedAsync");
+          await appDbContext.Database.EnsureDeletedAsync();
+          Console.WriteLine("EnsureCreatedAsync");
+          await appDbContext.Database.EnsureCreatedAsync();
+          Console.WriteLine("AddAsync");
+          await appDbContext.Items.AddAsync(new Item { Name = "Test" });
+          Console.WriteLine("SaveChangesAsync");
+          await appDbContext.SaveChangesAsync();
+          Console.WriteLine("ToArray");
+          var items = appDbContext.Items.ToArray();
+          if (items.Length != 1 || items[0].Name != "Test")
+          {
+            throw new Exception("Uh-oh.");
+          }
+        }
+      }
+      else
+      {
+        using (var appDbContext = new AppDbContext())
+        {
+          Console.WriteLine("EnsureDeletedAsync");
+          await appDbContext.Database.EnsureDeletedAsync();
+          Console.WriteLine("EnsureCreatedAsync");
+          await appDbContext.Database.EnsureCreatedAsync();
+          Console.WriteLine("AddAsync");
+          await appDbContext.Items.AddAsync(new Item { Name = "Test" });
+          Console.WriteLine("SaveChangesAsync");
+          await appDbContext.SaveChangesAsync();
+          Console.WriteLine("ToArray");
+          var items = appDbContext.Items.ToArray();
+          if (items.Length != 1 || items[0].Name != "Test")
+          {
+            throw new Exception("Uh-oh.");
+          }
         }
       }
     }
@@ -31,14 +58,31 @@ namespace src
 
   public class AppDbContext : DbContext
   {
+    private readonly bool useJson = false;
+
+    public AppDbContext(bool useJson = false)
+    {
+      this.useJson = useJson;
+    }
+
     public DbSet<Item> Items { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-      optionsBuilder.UseMySql($@"Server=localhost;Database=ef;User=root;Password=password");
+      if (useJson)
+      {
+        optionsBuilder.UseJson();
+      }
+      else
+      {
+        optionsBuilder.UseMySql($@"Server=localhost;Database=ef;User=root;Password=password");
+      }
+
       optionsBuilder.EnableDetailedErrors();
       optionsBuilder.EnableSensitiveDataLogging();
     }
+
+    // TODO: Log OnModelCreating
   }
 
   public sealed class Item
