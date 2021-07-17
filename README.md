@@ -101,3 +101,5 @@ exception is being thrown.
 See the other side of the coin when it comes to how Pomelo and my provider are
 called, maybe trace the SQL Server and in memory providers as well to capture
 the differences between relational and non-relational providers.
+
+### Look at https://github.com/GibraltarSoftware/VistaDB.EFCore for inspiration
